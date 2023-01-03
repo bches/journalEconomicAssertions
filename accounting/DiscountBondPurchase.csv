@@ -1,0 +1,5 @@
+Input Variables:,issuer,holder,FV,PR,T,Cash,Discount on Bond Payable,Bond Payable,Discount on Bond Investment,Bond Investment
+issuer,DR,CR,holder,DR,CR
+Cash,|graphPoint(PR,T)|,,Cash,,|graphPoint(PR,T)|
+Discount on Bond Payable,|graphPoint(FV-PR,T)|,,Discount on Bond Investment,,|graphPoint(FV-PR,T)|
+Bond Payable,,|graphPoint(FV,T)|,Bond Investment,|graphPoint(FV,T)|,
