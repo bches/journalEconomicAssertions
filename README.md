@@ -11,3 +11,6 @@ shareholders’ equity and the statement of cash flows, as well as generate othe
 and analysis.  Examples are given and the accounting basis of all transactions is open 
 for inspection.  With the JEA it is possible to issue equity, issue debt, and exchange 
 payment without having to do the bookkeeping yourself.
+
+See the [Journal of Economic Assertions][http://econ.assertion.info] for more details on:
+* [Data Structure][http://econ.assertion.info/data/index.html#structure]
