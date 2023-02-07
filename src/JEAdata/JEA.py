@@ -17,18 +17,21 @@ class graphPoint:
       self.P = price_per_unit
       self.N = number_of_units
 
+  def value(self):
+    return self.N * self.P
+      
   def __repr__(self):
     return '%s @ x%s' % (self.N, self.P)
 
   def __add__(self, other):
-    V = self.P * self.N + other.P * other.N
+    V = self.value() + other.value()
     return graphPoint(V, 1)
 
   def __iadd__(self, other):
     return self + other
 
   def __sub__(self, other):
-    V = self.P * self.N - other.P * other.N
+    V = self.value() - other.value()
     return graphPoint(V, 1)
 
   def __isub__(self, other):
