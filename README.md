@@ -1,5 +1,7 @@
 # The Journal of Economic Assertions
 
+## NOTE: This project is under construction and is not yet functional
+
 The Journal of Economic Assertions (JEA) is a fully-automatic bookkeeping system that 
 allows entities to assert economic transactions by sending digitally-signed messages to 
 an independent bookkeeper that records the transaction according to generally-accepted 
