@@ -17,12 +17,24 @@ class graphPoint:
       self.P = price_per_unit
       self.N = number_of_units
 
-  def value(self):
-    return self.N * self.P
+  def getNP(self): 
+    try:
+      N = self.N.value()
+    except AttributeError:
+      N = self.N
+    try:
+      P = self.P.value()
+    except AttributeError:
+      P = self.P
+    return (N,P)
       
+  def value(self):
+    (N, P) = self.getNP()
+    return N * P
+  
   def __repr__(self):
     return '%s @ x%s' % (self.N, self.P)
-
+  
   def __add__(self, other):
     V = self.value() + other.value()
     return graphPoint(V, 1)
@@ -37,6 +49,20 @@ class graphPoint:
   def __isub__(self, other):
     return self - other
 
+  def __mul__(self, other):
+    if isinstance(other, int):
+      N = self.N * other
+    try:
+      P = self.P.value()
+    except AttributeError:
+      P = self.P
+    return graphPoint(P,N)
+
+  def __eq__(self, other):
+    (N1,P1) = self.getNP()
+    (N2,P2) = other.getNP()
+    return (N1*P1) == (N2*P2) 
+  
   def nonzero(self):
     return self.N != 0 and self.P != 0
 
