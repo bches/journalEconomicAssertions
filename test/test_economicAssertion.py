@@ -4,7 +4,6 @@ from JEAdata import economicAssertion
 
 
 if __name__ == '__main__':
-    filename = '../accounting/DiscountBondPurchase.csv'
 
     if 'write' in sys.argv:
         with open(filename, 'w', newline='') as csvfile:
@@ -20,6 +19,18 @@ if __name__ == '__main__':
 
 
 
-    dut = economicAssertion(filename = filename)
+    purchase = economicAssertion(filename = '../accounting/DiscountBondPurchase.csv')
+	purchase.addInputVariable('iM')
+    print('Purchase:')
+    print(purchase)
+ 	print()
+       
+	payments = economicAssertion(filename = '../accounting/DiscountBondPeriodicPayment.csv')
+	payments.addInputVariable('iSR')
+    print('Payment:')
+	print(payments)
+	print()
 
-    print(dut)
+	repayment = economicAssertion(filename = '../accounting/DiscountBondRepayment.csv')
+    print('Repayment:')
+	print(repayment)
