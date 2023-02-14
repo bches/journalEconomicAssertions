@@ -189,7 +189,6 @@ def do_csvRead(filename):
   with open(filename, newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
     for row in spamreader:
-      print('row=',row)
       rows += [row]
   return rows
 
@@ -255,6 +254,9 @@ class economicAssertion:
   def getInputVariables(self):
     return self.input_variables 
 
+  def addInputVariable(self, name):
+    self.input_variables += [name]
+    
         
 class JEA():
   def __init__(self, Nperiods):
