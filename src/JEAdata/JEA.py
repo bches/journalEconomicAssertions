@@ -189,7 +189,6 @@ def do_csvRead(filename):
   with open(filename, newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
     for row in spamreader:
-      print('row=',row)
       rows += [row]
   return rows
 
@@ -225,6 +224,7 @@ def parseJournalEntries(links):
 
 class economicAssertion:
   def __init__(self, filename):
+    self.accounts = {}
     (head, tail) = os.path.split(filename)
     (root, ext) = os.path.splitext(tail)
     self.name = root
@@ -252,9 +252,30 @@ class economicAssertion:
     for each in self.methods:
       yield each
 
-  def getInputVariables(self):
-    return self.input_variables 
+  def __call__(self, k, args):
+    '''Execute the assertion in period k, with the args provided'''
+    vars = a.getInputVariables()
+    for line in a:
+      #print('line=',line)
+      s = re.sub('k', str(k), line)
+      for v in vars:
+        #print('\tv=',v)
+        s = re.sub(v, str(args[v]), s)
+      print('s=',s)
+      ret = eval(s)
+    return ret
 
+  def getInputVariables(self):
+    return self.input_variables
+
+  def addInputVariable(self, arg):
+    self.input_variables += [arg]
+
+  def setName(self, name):
+    self.name = name
+
+  def setAccountMapping(self, account, number):
+    self.accounts[account] = number
         
 class JEA():
   def __init__(self, Nperiods):
@@ -296,24 +317,7 @@ class JEA():
     self.assertions[a.name] = a
 
   def doAssertion(self, assertionName, k, args):
-    a = self.assertions[assertionName]
-    vars = a.getInputVariables()
-    for line in a:
-      #print('line=',line)
-      s = re.sub('k', str(k), line)
-      for v in vars:
-        #print('\tv=',v)
-        s = re.sub(v, str(args[v]), s)
-      print('s=',s)
-      ret = eval(s)
-  
-  def periodicPayment(self, k, payer, payee, Amort, Interest, Cash, 
-                      InterestRevenue, InterestExpense, 
-                      AmortAcct_payee, AmortAcct_payer):
-    self.G.addFlow(k, (payer, Cash), (payee, Cash), Amort + Interest)
-    self.G.addFlow(k, (payee, InterestRevenue), (payer, InterestExepense), Interest)
-    self.G.addFlow(k, (AmortAcct_payee), (AmortAcct_payer), Amort)
-    # need to fix the above for a Premium bond
+    pass
 
 
 if __name__ == '__main__':
