@@ -1,0 +1,74 @@
+Account	Type	Income Statement	Balance Sheet	Shareholder’s Equity	Statement of Cash Flows
+Cash	Asset	N/A	Assets->Current	N/A	Beginning Balance
+Common Stock	Equity	N/A	Equity	Beginning Balance, Shares Issued, Ending Balance	Financing->Shares Issued
+Additional Paid In Capital (Common Stock)	Equity	N/A	Equity	Beginning Balance, Shares Issued, Ending Balance	Financing->Shares Issued
+Retained Earnings	Equity	N/A	Equity	Beginning Balance, Ending Balance	N/A
+Accounts Receivable	Asset	N/A	Assets->Current	N/A	Operating->Cash Collected From Customers
+Accounts Payable	Liability	N/A	Liability->Current	N/A	Operating->Cash Paid to Suppliers
+Interest Revenue		Continuing Operations->Other Income/(Expense)	N/A	N/A	Operating income->Other income/(expense)
+Interest Expense		Continuing Operations->Other Income/(Expense)	N/A	N/A	Operating income->Other income/(expense)
+Bond Investment	Asset	N/A	Assets->Current, Assets->Noncurrent	N/A	Investing->Cash in Securities (Bonds)
+Bond Payable	Liability	N/A	Liabilities->Current, Liabilities->Noncurrent	N/A	Financing->Cash Provided by Bond Issue
+Premium on Bond Payable	Asset->Deferred Revenue	Continuing Operations->Other Income/(Expense)	Asset->Deferred Revenue	N/A	Financing->Cash used by bond payable
+Premium on Bond Investment	Liability->Deferred Expense	Continuing Operations->Other Income/(Expense)	Liability->Deferred Expense	N/A	Investing->Cash provided by bond investment
+Discount on Bond Payable	Liability->Deferred Expense	Continuing Operations->Other Income/(Expense)	Liability->Deferred Expense	N/A	Financing->Cash used by bond payable
+Discount on Bond Investment	Asset->Deferred Revenue	Continuing Operations->Other Income/(Expense)	Asset->Deferred Revenue	N/A	Investing->Cash provided by bond investment
+Right of Use Asset	Asset	N/A	Assets->Noncurrent	N/A	N/A
+Lease Receivable, trade, current portion	Asset	N/A	Assets->Current->Short-term investments	N/A	Operating->Inflows->Cash collected from Lease Receivable, trade
+Lease Receivable, trade, noncurrent portion	Asset	N/A	Assets->Noncurrent->Long-term investments	N/A	N/A
+Lease Receivable, nontrade, current portion	Asset	N/A	Assets->Current->Short-term investments	N/A	Investing->Inflows->Cash collected from Lease Receivable, nontrade
+Lease Receivable, nontrade, noncurrent portion	Asset	N/A	Assets->Noncurrent->Long-term investments	N/A	N/A
+Lease Payable, current portion	Liability	N/A	Liabilities->Current->Short-term liabilities	N/A	Investing->Outflows->Cash paid on Lease Payable
+Lease Payable, noncurrent portion	Liability	N/A	Liabilities->Current->Long-term liabilities	N/A	N/A
+Note Receivable, trade, current portion	Asset	N/A	Assets->Current->Short-term investments	N/A	Operating->Inflows->Cash collected from Note Receivable, trade
+Note Receivable, trade, noncurrent portion	Asset	N/A	Assets->Noncurrent->Long-term investments	N/A	N/A
+Note Receivable, nontrade, current portion	Asset	N/A	Assets->Current->Short-term investments	N/A	Investing->Inflows->Cash collected from Note Receivable, nontrade
+Note Receivable, nontrade, noncurrent portion	Asset	N/A	Assets->Noncurrent->Long-term investments	N/A	N/A
+Note Payable, current portion	Liability	N/A	Liabilities->Current->Short-term liabilities	N/A	Investing->Outflows->Cash paid on Note Payable
+Note Payable, noncurrent portion	Liability	N/A	Liabilities->Current->Long-term liabilities	N/A	N/A
+Land	Asset	Continuing Operations->Other Income->Gain/(Loss) os Sale of Asset	Assets->Noncurrent	N/A	Investing->Cash provided by/(used in) sale/(purchase) of asset
+Building	Asset	Continuing Operations->Other Income->Gain/(Loss) os Sale of Asset	Assets->Noncurrent	N/A	Investing->Cash provided by/(used in) sale/(purchase) of asset
+Machinery	Asset	Continuing Operations->Other Income->Gain/(Loss) os Sale of Asset	Assets->Noncurrent	N/A	Investing->Cash provided by/(used in) sale/(purchase) of asset
+Cost of Goods Sold	Asset	Continuing Operations->Cost of Goods Sold	N/A	N/A	N/A
+Work in Progress	Asset	N/A	Assets->Current->Inventory	N/A	N/A
+Finished Goods	Asset	N/A	Assets->Current->Inventory	N/A	N/A
+Sales Revenue	Equity	Continuing Operations->Sales Revenue	N/A	N/A	N/A
+Construction in Progress - building	Asset	Continuing Operations->Other income/(expenses)->Revenue from Long-Term Contracts (if for sale), N/A (if self-constructed asset)	Asset->Noncurrent->Construction-in-Progress->Building	N/A	
+Construction in Progress - machinery	Asset	Continuing Operations->Other income/(expenses)->Revenue from Long-Term Contracts (if for sale), N/A (if self-constructed asset)	Asset->Noncurrent->Construction-in-Progress->Machinery	N/A	
+Construction in Progress - hardware	Asset	Continuing Operations->Other income/(expenses)->Revenue from Long-Term Contracts (if for sale), N/A (if self-constructed asset)	Asset->Noncurrent->Construction-in-Progress->Hardware	N/A	
+Construction in Progress - software	Asset	Continuing Operations->Other income/(expenses)->Revenue from Long-Term Contracts (if for sale), N/A (if self-constructed asset)	Asset->Noncurrent->Construction-in-Progress->Software	N/A	
+Billings on Long Term Contract - building	contra-Asset	N/A	Asset->Noncurrent->Construction-in-Progress->Building (contra)	N/A	N/A
+Billings on Long-Term Contract - machinery	contra-Asset	N/A	Asset->Noncurrent->Construction-in-Progress->Machinery (contra)	N/A	N/A
+Billings on Long-term Contract - hardware	contra-Asset	N/A	Asset->Noncurrent->Construction-in-Progress->Hardware (contra)	N/A	N/A
+Billings on Long-term contract - software	contra-Asset	N/A	Asset->Noncurrent->Construction-in-Progress->Software (contra)	N/A	N/A
+Wages Expense	Contra-equity	Continuing Operations->Operating Expenses->Selling, General and Administrative Expenses	N/A	N/A	Operating->Outflows->Cash paid to employees
+Wages Payable	Liability	N/A	Liability->Current	N/A	N/A
+Revenue from Long Term Contract	Equity	Continuing Operations->Other Income->Revenue from Long Term Contract	N/A	N/A	N/A
+Depreciation Expense	Contra-equity	Continuing Operations->Operating Expenses	N/A	N/A	N/A
+Research Expense	Contra-equity	Continuing Operations->Other Income/(Expense)	N/A	N/A	N/A
+Direct Labor	Contra-equity	Continuing Operations->Cost of Goods Sold	Liabilities->Current->Wages Payable	N/A	Operating->Outflows->Cash paid in Wages
+Raw Materials	Contra-equity	Continuing Operations->Cost of Goods Sold	Assets->Current->Inventory	N/A	Operating->Outflows
+Depletion Expense	Contra-equity	Continuing Operations->Cost of Goods Sold	N/A	N/A	N/A
+Depletable Asset	Asset	N/A	Assets->Noncurrent	N/A	Investment->Cash provided by sales of / (used to purchase) depletable asset
+Income Tax Expense	Contra-equity	Continuing Operations->Income Tax Expense	N/A	N/A	Operations->Outflows [expense] or Operation->Inflows [(refund)]
+Deferred Tax Asset	Asset	Continuing Operations->Income Tax Expense	Assets->Noncurrent	N/A	N/A
+Deferred Tax Liability	Liability	Continuing Operations->Income Tax Expense	Liabilities->Noncurrent	N/A	N/A
+Valuation Allowance	Liability	Continuing Operations->Income Tax Expense	N/A	N/A	N/A
+Tax Payable	Liability	Continuing Operations->Income Tax Expense		N/A	N/A
+Projected Benefit Obligation	Liability	N/A	Liability->Noncurrent	N/A	N/A
+Pension Plan Assets	Asset	N/A	Asset->Noncurrent	N/A	N/A
+Accumulated Other Comprehensive Income	Equity		Equity->Accumulated Other Comprehensive Income		
+Prior Service Cost			Equity->Accumulated Other Comprehensive Income		
+Gain/(Loss) on Pension Plan	Equity		Equity->Accumulated Other Comprehensive Income		
+Gain/(Loss) on Sale-leaseback	Equity				
+Fair Value Adjustment					
+Gain/(Loss) on Debt Restructure	Equity				
+Gain/(Loss) on Bond (unrealized, OCI)	Equity				
+Gain/(Loss) on Bond (Net Income)	Equity				
+Common Stock Treasury	Equity	N/A	Equity	Beginning Balance, Shares Issued, Ending Balance	Financing->Shares Issued
+Additional Paid In Capital Common Stock Treasury	Equity	N/A	Equity	Beginning Balance, Shares Issued, Ending Balance	Financing->Shares Issued
+Common Stock Dividend Payable	Liability				
+Common Stock Dividend Paid	Contra-equity	N/A	N/A	Dividend	Financing->Cash used by common stock dividend paid
+Amortization Expense	Contra-equity				
+Gain/(Loss) on Sale of Asset	Equity	Continuing Operations->Other Income->Gain/(Loss) os Sale of Asset			Investing->Cash provided by/(used in) sale/(purchase) of asset
+Tools and Supplies	Asset	Continuing Operations->Operating Expenses->Tools and Supplies Expense	Assets->Current->Tools and Supplies	N/A	N/A
