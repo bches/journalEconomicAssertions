@@ -276,6 +276,7 @@ class economicAssertion:
 
   def setAccountMapping(self, account, number):
     self.accounts[account] = number
+
         
 class JEA():
   def __init__(self, Nperiods):
