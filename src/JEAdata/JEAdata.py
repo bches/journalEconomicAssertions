@@ -1,7 +1,7 @@
-"""# JEA base class"""
+"""# JEAdata base class"""
 
-import re
-import csv, os
+import re, os
+from tools.JEAfileIO import do_csvRead, parseJournalEntries, parseAccountMapping
 
 class graphPoint:
   def __init__(self, price_per_unit=0, number_of_units=1):
@@ -183,45 +183,7 @@ class flowGraph:
       else:
         self.addFlow(k+i*skip, fromNode, toNode, graphPoint(valueArray[i],1))
 
-def do_csvRead(filename):
-  '''Read a CSV file and return the rows as a list'''
-  rows = []
-  with open(filename, newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-    for row in spamreader:
-      rows += [row]
-  return rows
-
-def parseJournalEntries(links):
-  '''Interpret each entry in the list of strings, links, as two side-by-side
-  journal entries indicating that the doubly-entry accounting on the left
-  flows over to the double-entry accounting on the right.  Check to make sure
-  each line balances out.'''
-  entity1 = links[1][0]
-  entity2 = links[1][3]
-  s = []
-  for link in links[2:]:
-    (acct1, dr1, cr1, acct2, dr2, cr2) = tuple(link[:6])
-    assert (len(dr1)==0) ^ (len(cr1)==0), "One debit or credit per line, but not both"
-    assert (len(dr2)==0) ^ (len(cr2)==0), "One debit or credit per line, but not both"
-    assert (len(dr1)==0) ^ (len(dr2)==0), "Debit on one entity must go to credit on the other"
-    assert (len(cr1)==0) ^ (len(cr2)==0), "Debit on one entity must go to credit on the other"
-    if len(cr1) > 0:
-      fromPt = (entity1, acct1)
-      toPt = (entity2, acct2)
-      assert cr1 == dr2, "Line not balanced"
-      amount = cr1
-    elif len(cr2) > 0:
-      fromPt = (entity2, acct2)
-      toPt = (entity1, acct1)
-      assert cr2==dr1, "Line not balanced"
-      amount = cr2
-    else:
-      assert False, "Could not determine from/to: %s" % link
-    s += [(fromPt, toPt, amount)]
-  return s
-
-
+        
 class economicAssertion:
   def __init__(self, filename):
     self.accounts = {}
@@ -278,17 +240,32 @@ class economicAssertion:
     self.accounts[account] = number
 
         
-class JEA():
-  def __init__(self, Nperiods):
+class JEAdata():
+  def __init__(self, Nperiods, acctMap_filename):
     '''The base class of the journal of economic assertions,
     from which more specifically-tailored classes are derived.
-    Nperiods: total of number of periods to journal.'''
+    Nperiods: total of number of periods to journal.
+    acctMap_filename: CSV or TOML file of the account mapping,
+    which ties indices in the flowGraph to account names in the
+    economicAssertions.
+    '''
+    (head, tail) = os.path.split(acctMap_filename)
+    (root, ext) = os.path.splitext(tail)
+
+    if ext == ".csv":
+      lines = do_csvRead(acctMap_filename, delimiter='\t')
+    elif ext == ".toml":
+      assert False, "TOML not yet implemented."
+    else:
+      assert False, "Unrecognized file extension: %s" % ext
+    self.accounts = parseAccountMapping(lines)
     self.G = flowGraph(Nperiods)
     self.assertions = {}
 
   def __repr__(self):
     s = '<Instance of %s at %s:\n' % (self.__class__.__name__, id(self))
     s += '\tG = %s,\n' % self.G
+    s += '\taccounts = %s,\n' % self.accounts
     s += '\tassertions = %s\n>' % self.assertions
     return s
 
@@ -322,15 +299,8 @@ class JEA():
 
 
 if __name__ == '__main__':
-  dut = JEA(Nperiods=10)
+  dut = JEAdata(Nperiods=10,
+                acctMap_filename='../../accounting/accountMapping.csv')
   print(dut)
   
-  dut.addAssertion(filename = '../../accounting/DiscountBondPurchase.csv')
-  dut.doAssertion(assertionName='DiscountBondPurchase', k=0,
-                  args={'T':7, 'FV':60, 'PR':50, 'issuer':1, 'holder':2,
-                        'Cash':1, 'Discount on Bond Payable':2,
-                        'Bond Payable':3, 'Bond Investment':4,
-                        'Discount on Bond Investment':5})
-  
-  print(dut)
 
