@@ -1,4 +1,4 @@
-"""# JEAdata base class"""
+"""# JEAbooks base class"""
 
 import re, os
 from tools.JEAfileIO import do_csvRead, parseJournalEntries, parseAccountMapping
@@ -111,7 +111,7 @@ class flowGraph:
     '''
     assert len(_fromNode) == 2, "_fromNode must be length 2"
     assert len(_toNode) == 2, "_toNode must be length 2"
-    assert type(value) == type(graphPoint()), "value must be type graphPoint"
+    assert type(value) == type(graphPoint()), "value must be type graphPoint (found %s)" % type(value)
     if value.iszero():
       return
     assert k < len(self), "k must be less than the length of the graph"
@@ -202,11 +202,14 @@ class economicAssertion:
     self.input_variables = entries[0][1:]
     for each in parseJournalEntries(entries):
       (_fromNode, _toNode, value) = each
-      self.methods += ['self.G.addFlow(k, %s, %s, %s)' % (_fromNode, _toNode, value)]
+      self.methods += ['G.addFlow(k, %s, %s, %s)' % (_fromNode, _toNode, value)]
 
   def __repr__(self) -> str:
     args = ','.join(self.input_variables)
-    s = "%s(%s):\n" % (self.name, args)
+    try:
+      s = "%s(%s):\n" % (self.name, args)
+    except AttributeError:
+      s = "%s(%s):\n" % (self.__class__.__name__, args)      
     s += '\n'.join(map(str, self.methods))
     return s
 
@@ -214,14 +217,14 @@ class economicAssertion:
     for each in self.methods:
       yield each
 
-  def __call__(self, k, args):
+  def __call__(self, G, k, args):
     '''Execute the assertion in period k, with the args provided'''
-    vars = a.getInputVariables()
-    for line in a:
-      #print('line=',line)
+    vars = self.getInputVariables()
+    for line in self:
+      print('line=',line)
       s = re.sub('k', str(k), line)
       for v in vars:
-        #print('\tv=',v)
+        print('\tv=',v)
         s = re.sub(v, str(args[v]), s)
       print('s=',s)
       ret = eval(s)
@@ -240,7 +243,7 @@ class economicAssertion:
     self.accounts[account] = number
 
         
-class JEAdata():
+class JEAbooks():
   def __init__(self, Nperiods, acctMap_filename):
     '''The base class of the journal of economic assertions,
     from which more specifically-tailored classes are derived.
@@ -299,8 +302,8 @@ class JEAdata():
 
 
 if __name__ == '__main__':
-  dut = JEAdata(Nperiods=10,
-                acctMap_filename='../../accounting/accountMapping.csv')
+  dut = JEAbooks(Nperiods=10,
+                 acctMap_filename='../../accounting/accountMapping.csv')
   print(dut)
   
 
