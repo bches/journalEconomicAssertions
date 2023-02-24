@@ -221,10 +221,10 @@ class economicAssertion:
     '''Execute the assertion in period k, with the args provided'''
     vars = self.getInputVariables()
     for line in self:
-      print('line=',line)
+#      print('line=',line)
       s = re.sub('k', str(k), line)
       for v in vars:
-        print('\tv=',v)
+#        print('\tv=',v)
         s = re.sub(v, str(args[v]), s)
       print('s=',s)
       ret = eval(s)
