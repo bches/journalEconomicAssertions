@@ -1,0 +1,4 @@
+Input Variables:,issuer,holder,PA,T,Cash,Interest Expense,Interest Revenue
+issuer,DR,CR,holder,DR,CR
+Cash,,|graphPoint(PA,T)|,Cash,|graphPoint(PA,T)|,
+Interest Expense,|graphPoint(PA,T)|,,Interest Revenue,,|graphPoint(PA,T)|

@@ -1,0 +1,5 @@
+Input Variables:,issuer,holder,AM,PA,T,Cash,Premium on Bond Payable,Interest Expense,Premium on Bond Investment,Interest Revenue
+issuer,DR,CR,holder,DR,CR
+Cash,,|graphPoint(PA,T)|,Cash,|graphPoint(PA,T)|,
+Premium on Bond Payable,|graphPoint(AM,T)|,,Premium on Bond Investment,,|graphPoint(AM,T)|
+Interest Expense,|graphPoint(PA-AM,T)|,,Interest Revenue,,|graphPoint(PA-AM,T)|

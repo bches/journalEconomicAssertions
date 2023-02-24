@@ -1,0 +1,5 @@
+Input Variables:,issuer,holder,FV,PR,T,Cash,Premium on Bond Payable,Bond Payable,Premium on Bond Investment,Bond Investment
+issuer,DR,CR,holder,DR,CR
+Cash,|graphPoint(PR,T)|,,Cash,,|graphPoint(PR,T)|
+Premium on Bond Payable,,|graphPoint(PR-FV,T)|,Premium on Bond Investment,|graphPoint(PR-FV,T)|,
+Bond Payable,,|graphPoint(FV,T)|,Bond Investment,|graphPoint(FV,T)|,
